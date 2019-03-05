@@ -3,6 +3,7 @@ package com.mq;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -35,7 +36,7 @@ public class RabbitMqDemo {
         /**
          * //往队列中发出一条消息
          */
-        channel.basicPublish("",QUEUE_NAME,null,message.getBytes());
+        channel.basicPublish("",QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes());
         System.out.println("Sent '" + message + "'");
         /**
          * 关闭频道和连接
